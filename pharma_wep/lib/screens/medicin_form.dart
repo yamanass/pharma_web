@@ -64,7 +64,7 @@ class _MedicinFormScreenState extends State<MedicinFormScreen> {
                     ),
                     TextFormMidicn(labelText: "Enter the manufacturer name"),
                     TextFormMidicn(labelText: "Enter the available quantity"),
-                    TextFormMidicn(labelText: " Enter date entihaa salahia"),
+                    //TextFormMidicn(labelText: " Enter date entihaa salahia"),
                     TextFormMidicn(labelText: "Enter the price"),
                   ],
                 ),
