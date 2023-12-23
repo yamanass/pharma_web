@@ -49,8 +49,8 @@ class _MedicinFormScreenState extends State<MedicinFormScreen> {
                       // SizedBox(
                       //   height: 8,
                       // ),
-                      TextFormMidicn(labelText: "Enter the scientific name"),
-                      TextFormMidicn(labelText: "Enter the trade name"),
+                      TextFormMidicn(labelText: "Enter the scientific name", controller: TextEditingController(),),
+                      TextFormMidicn(labelText: "Enter the trade name", controller: TextEditingController()),
                       SizedBox(
                         height: 20,
                       ),
@@ -66,15 +66,15 @@ class _MedicinFormScreenState extends State<MedicinFormScreen> {
                           ],
                         ),
                       ),
-                      TextFormMidicn(labelText: "Enter the manufacturer name"),
+                      TextFormMidicn(labelText: "Enter the manufacturer name", controller: TextEditingController()),
                       SizedBox(
                         width: 20,
                       ),
-                      TextFormMidicn(labelText: "Enter the available quantity"),
+                      TextFormMidicn(labelText: "Enter the available quantity", controller: TextEditingController()),
                       SizedBox(
                         width: 20,
                       ),
-                      TextFormMidicn(labelText: "Enter the price"),
+                      TextFormMidicn(labelText: "Enter the price", controller: TextEditingController()),
                       SizedBox(
                         height: 20,
                       ),

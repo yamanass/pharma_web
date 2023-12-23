@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma_web/providers/user_provider.dart';
 import 'package:pharma_web/screens/medicin_form.dart';
 import 'package:pharma_web/screens/product_page.dart';
 import 'package:pharma_web/widgets/catigory_form.dart';
 import 'package:pharma_web/widgets/textfield_search.dart';
 
-class catigorypage extends StatelessWidget {
-  const catigorypage({super.key});
+class catigorypage extends ConsumerWidget {
+ catigorypage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      appBar: AppBar(
+       title:Text (ref.watch(userProvider)!.name! ),
+      ),
         body: Container(
             child: Column(children: [
       Padding(

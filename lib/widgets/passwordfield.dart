@@ -6,9 +6,10 @@ class passwordfield extends StatefulWidget {
     super.key,
     this.labelText,
     this.icon,
+    required this.controller
   });
   String? labelText;
-
+  TextEditingController controller;
   Icon? icon;
   @override
   State<passwordfield> createState() => _passwordfieldState();
@@ -23,6 +24,7 @@ class _passwordfieldState extends State<passwordfield> {
       key: formstate,
       //padding: EdgeInsets.only(top: 15),
       child: TextFormField(
+        controller: widget.controller,
         validator: (value) {
           // ignore: unnecessary_null_comparison
           if (value!.isEmpty || value == null) {

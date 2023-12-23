@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 
 class TextFormMidicn extends StatefulWidget {
-  TextFormMidicn({super.key, this.labelText, this.icon});
+  TextFormMidicn({super.key, this.labelText, this.icon, required this.controller});
   String? labelText;
   Icon? icon;
-   
+   TextEditingController controller;
 
   @override
   State<TextFormMidicn> createState() => _TextFormMidicnState();
@@ -17,6 +17,7 @@ class _TextFormMidicnState extends State<TextFormMidicn> {
     return Container(
       padding: EdgeInsets.only(top: 15),
       child: TextFormField(
+        controller: widget.controller,
         decoration: InputDecoration(
           suffixIcon: widget.icon,
           focusedBorder:
