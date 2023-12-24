@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharma_web/models/auth/login.dart';
 
@@ -49,4 +50,5 @@ class AuthServices {
     }
   }
 }
+final authProvider = Provider<AuthServices>((ref) => AuthServices());
 

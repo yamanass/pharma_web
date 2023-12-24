@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma_web/screens/catigory_page.dart';
+import 'package:pharma_web/screens/main_page.dart';
 import 'package:pharma_web/screens/medicin_form.dart';
 import 'package:pharma_web/screens/username_textformfield.dart';
 import 'package:pharma_web/services/auth_service.dart';
+import 'package:pharma_web/widgets/auth/aut_button.dart';
+import 'package:pharma_web/widgets/auth/auth_text_field.dart';
 import 'package:pharma_web/widgets/passwordfield.dart';
 import 'package:pharma_web/widgets/tex_form_midicin.dart';
 
@@ -39,19 +42,24 @@ class _loginScreanState extends ConsumerState<loginScrean> {
   void _onSaved(BuildContext context, WidgetRef ref) async {
     if (_formKey.currentState!.validate())  {
       _formKey.currentState!.save();
+
+      // define the model we want to send
       final login = LoginModel(
           phone: widget.phoneCtrl.text.toString(),
           password: widget.passwordCtrl.text.toString());
-      var loginRes=await AuthServices().getUser(login);
+
+      final _authWatcher = await ref.watch(authProvider).getUser(login);
+
       if(error==null) {
-        ref.watch(userProvider.notifier).setUser(loginRes.user!);
-        ref.watch(tokenProvider.notifier).setToken(loginRes.token!);
+        ref.watch(userProvider.notifier).setUser(_authWatcher!.user!);
+        ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
         print("yees");
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-          return  catigorypage();
+          return  MainPage();
           //return HomeScreen();
         }));
-      } if(error!=null){
+      }
+      if(error!=null){
         print(error);
         _showErrorSnackBar(context, error!);
         error =null;
@@ -59,6 +67,11 @@ class _loginScreanState extends ConsumerState<loginScrean> {
 
     }
 }
+
+
+
+
+
   final _formKey = GlobalKey<FormState>();
   String? username;
   String? phone;
@@ -104,31 +117,41 @@ class _loginScreanState extends ConsumerState<loginScrean> {
                             SizedBox(
                               height: 20,
                             ),
-                            UserName(),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            TextFormMidicn(
-                              controller: widget.phoneCtrl,
-                              labelText: "Phone",
-                              icon: Icon(
-                                Icons.phone_iphone,
-                              ),
-                            ),
+
+
+                            //  THE USER NAME FIELD THAT WE DONT WANT
+                            // UserName(),
+                            // RegexTextField(topic: FormsTopic.userName, label: "enter your user name", ctrl: )
+                            // SizedBox(
+                            //   height: 20,
+                            // ),
+
+
+
+                            RegexTextField(topic: FormsTopic.phoneNumber, label: "Enter your phone number", ctrl: widget.phoneCtrl),
+
                             SizedBox(
                               height: 30,
                             ),
-                            passwordfield(
-                              controller: widget.passwordCtrl,
-                              labelText: "Password",
-                              //icon: Icon(Icons.visibility_off),
-                            ),
+                            RegexTextField(topic: FormsTopic.password, label: "Enter yous passowrd", ctrl: widget.passwordCtrl),
+
+
+
+
+
+
+
+
                             SizedBox(
                               height: 60,
                             ),
+
+
+
+                            // login button
                             Container(
                               height: 45,
-                              width: 800,
+                              width: 750,
                               decoration: BoxDecoration(
                                   color: Color.fromARGB(255, 43, 116, 225),
                                   borderRadius: BorderRadius.circular(20)),
@@ -143,6 +166,7 @@ class _loginScreanState extends ConsumerState<loginScrean> {
                                 ),
                               ),
                             ),
+
                           ],
                         )),
                   ),
