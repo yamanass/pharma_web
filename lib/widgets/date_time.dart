@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pharma_web/controllers/add_medicine_controller.dart';
 import 'package:uuid/uuid.dart';
 
 final formatter = DateFormat.yMd();
@@ -27,6 +28,15 @@ class _PickDateWidgetState extends State<PickDateWidget> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30),
       height: 60,
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black,
+            width: 0.5,
+          ),
+          borderRadius: BorderRadius.circular(8),
+          color: const Color.fromARGB(255, 105, 206, 240)
+          //color: Color(0xff9bc3ff),
+          ),
       child: Row(
         children: [
           Expanded(
@@ -57,6 +67,7 @@ class _PickDateWidgetState extends State<PickDateWidget> {
                           firstDate: firstDate,
                           lastDate: lastDate);
                       setState(() {
+                        chosenDate=pickedDate!;
                         _selectedDate = pickedDate;
                         print(_selectedDate);
                       });
@@ -70,15 +81,6 @@ class _PickDateWidgetState extends State<PickDateWidget> {
           )
         ],
       ),
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black,
-            width: 0.5,
-          ),
-          borderRadius: BorderRadius.circular(8),
-          color: const Color.fromARGB(255, 105, 206, 240)
-          //color: Color(0xff9bc3ff),
-          ),
     );
   }
 }

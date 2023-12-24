@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma_web/screens/catigory_page.dart';
 import 'package:pharma_web/screens/medicin_form.dart';
 
+import '../data/category_list.dart';
 import '../providers/auth_data_provider.dart';
 import '../providers/user_provider.dart';
+import '../services/get_categories_service.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
@@ -18,6 +20,7 @@ class _MainPageState extends ConsumerState<MainPage> {
   PageController pageController = PageController();
   SideMenuController sideMenu = SideMenuController();
 
+
   @override
   void initState() {
     sideMenu.addListener((index) {
@@ -28,7 +31,14 @@ class _MainPageState extends ConsumerState<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final tokenReader = ref.read(tokenProvider);
+    final tokenReader =ref.read(tokenProvider);
+    _onAddSellected()async{
+      var temp = await AllCategoryService().getAllCategory(tokenReader.toString());
+      categoryList=temp;
+
+      return temp;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title:Text (ref.watch(userProvider)!.name!
@@ -101,7 +111,8 @@ class _MainPageState extends ConsumerState<MainPage> {
               ),
               SideMenuItem(
                 title: 'Add Item',
-                onTap: (index, _) {
+                onTap: (index, _) async {
+                  await _onAddSellected();
                   sideMenu.changePage(index);
                 },
                 icon: const Icon(Icons.add_circle_outline_outlined),

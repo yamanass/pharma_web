@@ -1,16 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma_web/controllers/add_medicine_controller.dart';
+import 'package:pharma_web/models/adding_medicine_model.dart';
+import 'package:pharma_web/providers/auth_data_provider.dart';
+import 'package:pharma_web/screens/main_page.dart';
+import 'package:pharma_web/services/add_product_service.dart';
 import 'package:pharma_web/widgets/category/category_drop.dart';
 import 'package:pharma_web/widgets/date_time.dart';
 import 'package:pharma_web/widgets/tex_form_midicin.dart';
 
-class MedicinFormScreen extends StatefulWidget {
+class MedicinFormScreen extends ConsumerStatefulWidget {
   MedicinFormScreen({super.key});
 
   @override
-  State<MedicinFormScreen> createState() => _MedicinFormScreenState();
+  ConsumerState<MedicinFormScreen> createState() => _MedicinFormScreenState();
 }
 
-class _MedicinFormScreenState extends State<MedicinFormScreen> {
+class _MedicinFormScreenState extends ConsumerState<MedicinFormScreen> {
+  void onAddProduct(WidgetRef ref)async{
+    final tokenReader= ref.read(tokenProvider);
+    final medicine= AddingMedicineModel(
+      commercialName: tradeNameCtr.text.toString(),
+    scientificName: scientificNameCtr.text.toString(),
+
+    createdat: chosenDate,
+    categoryId: chosenCategory,
+
+    company: companyNameCtr.text.toString(),
+    cost: priceCtr.text.toString(),
+      quantityAvailable: quantityCtr.text.toString(),
+    );
+   var response= await AddProductService().insertProduct(medicine, tokenReader.toString());
+     showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(response==200?'The product added sucsessfuly ': ' Some errors hepaned please tye again'),
+          content: Text(response==200?'you can see it in the medicine screen ': 'error occcurred'),
+          actions: [
+            TextButton(
+              onPressed: () {
+               tradeNameCtr.clear();
+               scientificNameCtr.clear();
+               quantityCtr.clear();
+               priceCtr.clear();
+               companyNameCtr.clear();
+               Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -49,8 +93,8 @@ class _MedicinFormScreenState extends State<MedicinFormScreen> {
                       // SizedBox(
                       //   height: 8,
                       // ),
-                      TextFormMidicn(labelText: "Enter the scientific name", controller: TextEditingController(),),
-                      TextFormMidicn(labelText: "Enter the trade name", controller: TextEditingController()),
+                      TextFormMidicn(labelText: "Enter the scientific name", controller: scientificNameCtr,),
+                      TextFormMidicn(labelText: "Enter the trade name", controller: tradeNameCtr),
                       SizedBox(
                         height: 20,
                       ),
@@ -66,15 +110,15 @@ class _MedicinFormScreenState extends State<MedicinFormScreen> {
                           ],
                         ),
                       ),
-                      TextFormMidicn(labelText: "Enter the manufacturer name", controller: TextEditingController()),
+                      TextFormMidicn(labelText: "Enter the manufacturer name", controller: companyNameCtr),
                       SizedBox(
                         width: 20,
                       ),
-                      TextFormMidicn(labelText: "Enter the available quantity", controller: TextEditingController()),
+                      TextFormMidicn(labelText: "Enter the available quantity", controller: quantityCtr),
                       SizedBox(
                         width: 20,
                       ),
-                      TextFormMidicn(labelText: "Enter the price", controller: TextEditingController()),
+                      TextFormMidicn(labelText: "Enter the price", controller: priceCtr),
                       SizedBox(
                         height: 20,
                       ),
@@ -85,9 +129,10 @@ class _MedicinFormScreenState extends State<MedicinFormScreen> {
                             color: const Color.fromARGB(255, 105, 206, 240),
                             borderRadius: BorderRadius.circular(13)),
                         child: MaterialButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => MedicinFormScreen()));
+                          onPressed: () async{
+                             onAddProduct(ref);
+                             print("rabeet");
+
                           },
                           child: Text(
                             "Add",

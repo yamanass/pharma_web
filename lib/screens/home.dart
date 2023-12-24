@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma_web/data/category_list.dart';
+import 'package:pharma_web/providers/auth_data_provider.dart';
 import 'package:pharma_web/screens/login.dart';
 
-class homepage extends StatelessWidget {
+import '../services/get_categories_service.dart';
+
+class homepage extends ConsumerWidget {
+
   const homepage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tokenReader = ref.read(tokenProvider);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -53,8 +61,10 @@ class homepage extends StatelessWidget {
                     BoxDecoration(borderRadius: BorderRadius.circular(13)),
                 child: MaterialButton(
                   onPressed: () {
+
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => loginScrean()));
+
                   },
                   child: Text(
                     "sign in",

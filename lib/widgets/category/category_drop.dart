@@ -1,6 +1,8 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:pharma_web/controllers/add_medicine_controller.dart';
+import 'package:pharma_web/data/category_list.dart';
 
 class CategoryDropDown extends StatefulWidget {
   const CategoryDropDown({super.key});
@@ -11,14 +13,7 @@ class CategoryDropDown extends StatefulWidget {
 
 class _CategoryDropDownState extends State<CategoryDropDown> {
   String? valuechoose;
-  List listItem = [
-    "Item 1",
-    "Item 2",
-    "Item 3",
-    "Item 4",
-    "Item 5",
-    "Item 6",
-  ];
+ var listItem=categoryList.map((e) => e.name).toList();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,6 +44,12 @@ class _CategoryDropDownState extends State<CategoryDropDown> {
           onChanged: (newValue) {
             setState(() {
               valuechoose = newValue as String?;
+              for(var e in categoryList){
+                if(e.name== valuechoose){
+                  chosenCategory=e.id;
+                  print(chosenCategory);
+                }
+              }
             });
           },
           items: listItem.map((valueItem) {

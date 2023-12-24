@@ -9,7 +9,7 @@ import 'package:pharma_web/widgets/auth/auth_text_field.dart';
 import 'package:pharma_web/widgets/passwordfield.dart';
 import 'package:pharma_web/widgets/tex_form_midicin.dart';
 
-import '../date/error_message.dart';
+import '../data/error_message.dart';
 import '../models/auth/login.dart';
 import '../providers/auth_data_provider.dart';
 import '../providers/user_provider.dart';
