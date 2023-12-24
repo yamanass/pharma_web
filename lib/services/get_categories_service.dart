@@ -10,7 +10,7 @@ class AllCategoryService {
 
     http.Response response = await http.get(
         Uri.parse("http://127.0.0.1:8000/api/admin/getCategories"),
-        headers: {'Authorization': 'Bearer 52|GB5G5RLeXEi0VX43DS8N9soRhxFkemjIAkD2rLYL10bf2185'});
+        headers: {'Authorization': 'Bearer $token'});
 
     List<dynamic> data = jsonDecode(response.body);
 

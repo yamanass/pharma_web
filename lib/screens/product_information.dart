@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma_web/models/medicine.dart';
 
-class ProductInformation extends StatelessWidget {
-  const ProductInformation({Key? key}) : super(key: key);
+import '../providers/user_provider.dart';
 
+class ProductInformation extends ConsumerWidget {
+ ProductInformation({super.key, required this.medicine});
+  MedicineModel medicine;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      appBar: AppBar(
+        title:Text (ref.watch(userProvider)!.name!
+            ),
+        backgroundColor: const Color.fromARGB(255, 70, 201, 210),
+      ),
+      backgroundColor: Color.fromARGB(255, 67, 201, 201),
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
+
         decoration: BoxDecoration(color: Color(0xfff5f5f5)),
         child: Container(
           child: Stack(
@@ -32,51 +41,80 @@ class ProductInformation extends StatelessWidget {
                   child: Container(
                     child: Padding(
                       padding: const EdgeInsets.only(right: 115),
-                      child: Column(
+                      child:  Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const Text(
+                            'Medicine Name',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const  SizedBox(height: 5),
                           Text(
-                            '- Scientific name',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            medicine.commercial_name.toString(),
+                            //medicine.name.toString(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          SizedBox(
-                            height: 10,
+                          const  SizedBox(height: 15),
+                          const Text(
+                            'Price',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
+                          const SizedBox(height: 5),
                           Text(
-                            '- Trede name',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            '- Category',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(),
-                            child: Text(
-                              '- Expiry date',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 20),
+                            '${medicine.cost.toString()}\$',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 5,
                           ),
+                          //Scientific name
+                          const Text(
+                            'Scientific Name',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
                           Text(
-                            '- Quantiy',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            medicine.scientific_name.toString(),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                          //Company Name
+                          const SizedBox(height: 15),
                           Text(
-                            '- Company',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            'Company',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            medicine.company.toString(),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),

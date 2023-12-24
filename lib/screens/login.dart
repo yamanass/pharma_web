@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma_web/screens/catigory_page.dart';
 import 'package:pharma_web/screens/main_page.dart';
-import 'package:pharma_web/screens/medicin_form.dart';
-import 'package:pharma_web/screens/username_textformfield.dart';
+
 import 'package:pharma_web/services/auth_service.dart';
 import 'package:pharma_web/widgets/auth/aut_button.dart';
 import 'package:pharma_web/widgets/auth/auth_text_field.dart';

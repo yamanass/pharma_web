@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pharma_web/screens/card_page.dart';
+import 'package:pharma_web/models/medicine.dart';
+import 'package:pharma_web/widgets/card_page.dart';
 
 class Search3 extends StatelessWidget {
   const Search3({Key? key}) : super(key: key);
@@ -74,7 +75,8 @@ class Search3 extends StatelessWidget {
                                   crossAxisSpacing: 0.5,
                                   childAspectRatio: 5.0),
                           itemBuilder: (context, index) {
-                            return CardPage();
+                            return  Container();
+                              //CardPage(medicine: MedicineModel(), onSelectedMedicine: (int medId) {  },);
                           }),
                     ),
                   ),

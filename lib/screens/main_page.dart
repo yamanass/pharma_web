@@ -5,6 +5,7 @@ import 'package:pharma_web/screens/catigory_page.dart';
 import 'package:pharma_web/screens/medicin_form.dart';
 
 import '../providers/auth_data_provider.dart';
+import '../providers/user_provider.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
@@ -30,8 +31,8 @@ class _MainPageState extends ConsumerState<MainPage> {
     final tokenReader = ref.read(tokenProvider);
     return Scaffold(
       appBar: AppBar(
-        title:Text (//ref.watch(userProvider)!.name!
-            "aya" ),
+        title:Text (ref.watch(userProvider)!.name!
+             ),
         backgroundColor: const Color.fromARGB(255, 70, 201, 210),
       ),
       body: Row(

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pharma_web/screens/product_information.dart';
 
-class CardPage extends StatelessWidget {
-  const CardPage({Key? key}) : super(key: key);
+import '../models/medicine.dart';
 
+class CardPage extends StatelessWidget {
+   CardPage({super.key, required this.medicine, required this.onSelectedMedicine});
+  final MedicineModel medicine;
+  final Function(int medId) onSelectedMedicine;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,16 +14,17 @@ class CardPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ProductInformation();
-            }));
+            // Navigator.push(context, MaterialPageRoute(builder: (context) {
+            //   return ProductInformation();
+            // }));
           },
           child: Container(
+            width: 150,
             child: Card(
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  gradient: LinearGradient(
+                  gradient:const LinearGradient(
                     colors: [Color.fromARGB(255, 43, 116, 225), Colors.white],
                   ),
                 ),
@@ -30,11 +34,11 @@ class CardPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('panadol'),
+                      Text(medicine.commercial_name),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(r'\$200'),
+                          Text(medicine.cost.toString()),
                         ],
                       )
                     ],
