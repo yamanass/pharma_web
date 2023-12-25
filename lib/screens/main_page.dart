@@ -3,6 +3,7 @@ import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma_web/screens/catigory_page.dart';
 import 'package:pharma_web/screens/medicin_form.dart';
+import 'package:pharma_web/screens/search_screen.dart';
 
 import '../data/category_list.dart';
 import '../providers/auth_data_provider.dart';
@@ -144,15 +145,7 @@ class _MainPageState extends ConsumerState<MainPage> {
               controller: pageController,
               children: [
                 catigorypage(),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Users',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
+                SearchScreen(),
                 Container(
                   color: Colors.white,
                   child: const Center(

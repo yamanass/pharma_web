@@ -23,7 +23,7 @@ class homepage extends ConsumerWidget {
             children: [
               Container(
                 padding: EdgeInsets.only(top: 1),
-                height: 400,
+                height: 500,
                 width: double.infinity,
                 child: Image.asset(
                   height: double.infinity,
@@ -40,16 +40,47 @@ class homepage extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white,
                   ),
-                  height: 200,
-                  width: 600,
-                  child: Text(
-                    'Welcome to our app.Click sign in and enjoy selecting the most wonderful medicines 🔥',
-                    style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'kaushan script'),
-                    textAlign: TextAlign.center,
+                  height: 100,
+                  width: 650,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: Text(
+                            'Welcome to our app.',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600,
+                              //fontFamily: 'Pacifico',
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Click sign in and enjoy selecting the most wonderful medicines ',
+                                style: TextStyle(
+                                    fontSize: 21, fontWeight: FontWeight.w300),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                '🔥',
+                                style: TextStyle(
+                                    color: Colors.orange, fontSize: 30),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   )),
               SizedBox(
                 height: 30,
@@ -62,7 +93,7 @@ class homepage extends ConsumerWidget {
                 child: MaterialButton(
                   onPressed: () {
 
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => loginScrean()));
 
                   },
