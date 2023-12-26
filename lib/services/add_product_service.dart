@@ -17,7 +17,7 @@ class AddProductService {
       url,
       headers: <String, String>{
         'Accept': 'application/json',
-        'Authorization': 'Bearer 5|6ZCNS7lAUNZXc9ZCUhc7tdVKoyHiXlYl3brnrCdk3e1cd11b',
+        'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       },
       body: json.encode(medicine.toJson()),
