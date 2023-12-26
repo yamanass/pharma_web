@@ -52,14 +52,14 @@ class _loginScreanState extends ConsumerState<loginScrean> {
       if(error==null) {
         ref.watch(userProvider.notifier).setUser(_authWatcher!.user!);
         ref.watch(tokenProvider.notifier).setToken(_authWatcher.token!);
-        print("yees");
+
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
           return  MainPage();
           //return HomeScreen();
         }));
       }
       if(error!=null){
-        print(error);
+        // print(error);
         _showErrorSnackBar(context, error!);
         error =null;
       }

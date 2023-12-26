@@ -17,10 +17,7 @@ class ProductPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void _selectMedicine(MedicineModel medicine, int id, WidgetRef ref) async {
-      // final tokenWathcer = ref.watch(tokenProvider);
-      // final medicineDetailsWatcher = await ref
-      //     .watch(medicineProvider)
-      //     .getAllMedicine(tokenWathcer.toString(), id);
+
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (ctx) => ProductInformation(medicine: medicine),

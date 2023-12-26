@@ -27,7 +27,7 @@ class MedicineItem extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             gradient: LinearGradient(
-              colors: [kblue, kgreen],
+              colors: [Kblue, Kgreen],
             ),
           ),
           child: Padding(

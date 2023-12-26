@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma_web/screens/catigory_page.dart';
 import 'package:pharma_web/screens/home.dart';
 import 'package:pharma_web/screens/main_page.dart';
+import 'package:pharma_web/screens/order_details.dart';
+
+import 'models/order.dart';
 
 var kColorScheme =
 ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 67, 201, 201));
@@ -31,6 +34,7 @@ class MyApp extends StatelessWidget {
       home: //catigorypage()
         homepage(),
       //MainPage()
+      //OrderDataisPage(order: Order(),)
 
     );
   }
