@@ -12,8 +12,8 @@ import '../providers/user_provider.dart';
 import '../services/get_categories_service.dart';
 
 class MainPage extends ConsumerStatefulWidget {
-  const MainPage({super.key});
-
+   MainPage({super.key, this.index});
+  int? index;
   @override
   ConsumerState<MainPage> createState() => _MainPageState();
 }
@@ -26,6 +26,7 @@ class _MainPageState extends ConsumerState<MainPage> {
   @override
   void initState() {
     sideMenu.addListener((index) {
+
       pageController.jumpToPage(index);
     });
     super.initState();
@@ -33,6 +34,14 @@ class _MainPageState extends ConsumerState<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    if(widget.index !=null) {
+      sideMenu.addListener((index ) {
+
+        pageController.jumpToPage(widget.index!);
+      });
+      sideMenu.changePage(widget.index!);
+
+    }
     final tokenReader =ref.read(tokenProvider);
     _onAddSellected()async{
       var temp = await AllCategoryService().getAllCategory(tokenReader.toString());
@@ -145,10 +154,15 @@ class _MainPageState extends ConsumerState<MainPage> {
             child: PageView(
               controller: pageController,
               children: [
+                //0
                 catigorypage(),
+                //1
                 SearchScreen(),
+                //2
                 OrdersPage(),
+                //3
                 MedicinFormScreen(),
+                //4
                 Container(
                   color: Colors.white,
                   child: const Center(
@@ -158,15 +172,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                     ),
                   ),
                 ),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Only Title',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
+
 
               ],
             ),

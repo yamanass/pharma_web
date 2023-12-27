@@ -31,6 +31,13 @@ class MyApp extends StatelessWidget {
      // themeMode: ThemeMode.dark,
     //  debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/main':
+            return MaterialPageRoute(builder: (context) => MainPage());
+
+        }
+      },
       home: //catigorypage()
         homepage(),
       //MainPage()

@@ -12,12 +12,10 @@ class AllOrdersService {
     http.Response response = await http.get(
         Uri.parse("http://127.0.0.1:8000/api/admin/getOrderDetails"),
         headers: {'Authorization': 'Bearer $token'});
-    print("the order response${response.statusCode}");
-   // print(jsonDecode(response.body)["data"]);
-   // print(response.body);
+
     List<dynamic> data = jsonDecode(response.body)['data'];
 
-    print( data[0]);
+
     List<Order> orderList = [];
 
     for (int i = 0; i < data.length; i++) {
@@ -25,7 +23,7 @@ class AllOrdersService {
         orderList.add(
           Order.fromJson(data[i]),
         );
-        print(orderList[i].id);
+
 
     }
     return orderList;
