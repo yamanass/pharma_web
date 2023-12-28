@@ -10,6 +10,7 @@ import '../data/category_list.dart';
 import '../providers/auth_data_provider.dart';
 import '../providers/user_provider.dart';
 import '../services/get_categories_service.dart';
+import 'expiration_screen.dart';
 
 class MainPage extends ConsumerStatefulWidget {
    MainPage({super.key, this.index});
@@ -129,6 +130,14 @@ class _MainPageState extends ConsumerState<MainPage> {
                 icon: const Icon(Icons.add_circle_outline_outlined),
               ),
               SideMenuItem(
+                title: 'ُExpiration ',
+                onTap: (index, _) async {
+                  await _onAddSellected();
+                  sideMenu.changePage(index);
+                },
+                icon: const Icon(Icons.add_circle_outline_outlined),
+              ),
+              SideMenuItem(
                 builder: (context, displayMode) {
                   return const Divider(
                     endIndent: 8,
@@ -160,8 +169,10 @@ class _MainPageState extends ConsumerState<MainPage> {
                 SearchScreen(),
                 //2
                 OrdersPage(),
+
                 //3
                 MedicinFormScreen(),
+                Expiration(),
                 //4
                 Container(
                   color: Colors.white,
