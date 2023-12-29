@@ -94,7 +94,7 @@ class homepage extends ConsumerWidget {
                   onPressed: () {
 
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => loginScrean()));
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
 
                   },
                   child: Text(

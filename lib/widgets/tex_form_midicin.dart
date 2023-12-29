@@ -18,6 +18,12 @@ class _TextFormMidicnState extends State<TextFormMidicn> {
       padding: EdgeInsets.only(top: 15),
       child: TextFormField(
         controller: widget.controller,
+        validator: (v){
+          if(v==null||v.isEmpty){
+            return "You should enter a real value";
+          }
+          return null;
+        },
         decoration: InputDecoration(
           suffixIcon: widget.icon,
           focusedBorder:

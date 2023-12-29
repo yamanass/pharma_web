@@ -14,16 +14,16 @@ import '../models/auth/login.dart';
 import '../providers/auth_data_provider.dart';
 import '../providers/user_provider.dart';
 
-class loginScrean extends ConsumerStatefulWidget {
-  loginScrean({super.key});
+class LoginScreen extends ConsumerStatefulWidget {
+  LoginScreen({super.key});
 
   @override
-  ConsumerState<loginScrean> createState() => _loginScreanState();
+  ConsumerState<LoginScreen> createState() => _loginScreanState();
   var phoneCtrl = TextEditingController();
   var passwordCtrl = TextEditingController();
 }
 
-class _loginScreanState extends ConsumerState<loginScrean> {
+class _loginScreanState extends ConsumerState<LoginScreen> {
   void _showErrorSnackBar(BuildContext context, String content) {
     final snackBar = SnackBar(
       content: Text(content),

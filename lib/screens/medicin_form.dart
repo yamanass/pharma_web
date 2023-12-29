@@ -142,7 +142,9 @@ class _MedicinFormScreenState extends ConsumerState<MedicinFormScreen> {
                                 color: Colors.white),
                           ),
                         ),
+
                       ),
+                      SizedBox(height: 20,)
                     ],
                   ),
                 ),
