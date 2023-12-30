@@ -15,7 +15,7 @@ class OrderDetailsPage extends ConsumerWidget {
   OrderDetailsPage({super.key, required this.order});
   void changeStatus(Order order, BuildContext context, String token) async{
     int temp= order.status=="In_Preparation"?1:2;
-    bool sucsess=await ChangeStatus().setStatus(temp, order.id!.toInt(), token);
+    bool sucsess=await ChangeStatus().setStatus(temp, order.id!.toInt(), token,order.userId!.toInt());
     showDialog(
         context: context,
         builder: (BuildContext context) {

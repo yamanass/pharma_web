@@ -6,7 +6,7 @@ import 'dart:convert';
 // 2 reserved
 class ChangeStatus{
 
-  Future<bool> setStatus(int status, int orderID, String token) async {
+  Future<bool> setStatus(int status, int orderID, String token, int userID) async {
     final url = Uri.parse("http://127.0.0.1:8000/api/admin/status");
 
     final response = await http.post(
@@ -18,7 +18,9 @@ class ChangeStatus{
       },
       body: json.encode({
         'id': status,
-        'id_order': orderID
+        'id_order': orderID,
+        'user_id': userID
+
       }),
     );
     print(response.body);

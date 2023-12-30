@@ -28,7 +28,16 @@ class AllMedicineService {
         //print(data[i].toString());
       }
     }
-    return medicineList;
+    Set<String> name={};
+    List <MedicineModel> nondupMedicineList=[];
+    for(var e in medicineList){
+      if(!name.contains(e.commercial_name)){
+        nondupMedicineList.add(e);
+        name.add(e.commercial_name);
+      }
+
+    }
+    return nondupMedicineList;
   }
 }
 
