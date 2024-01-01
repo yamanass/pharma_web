@@ -5,6 +5,8 @@ import 'package:pharma_web/screens/catigory_page.dart';
 import 'package:pharma_web/screens/home.dart';
 import 'package:pharma_web/screens/medicin_form.dart';
 import 'package:pharma_web/screens/orders_page.dart';
+import 'package:pharma_web/screens/report_screen.dart';
+import 'package:pharma_web/screens/request_report_page.dart';
 import 'package:pharma_web/screens/search_screen.dart';
 
 import '../data/category_list.dart';
@@ -143,6 +145,13 @@ class _MainPageState extends ConsumerState<MainPage> {
                   icon: const Icon(Icons.incomplete_circle),
                 ),
                 SideMenuItem(
+                  title: 'Reports',
+                  icon: Icon(Icons.auto_graph),
+                  onTap: (index, _) async {
+                    sideMenu.changePage(index);
+                  },
+                ),
+                SideMenuItem(
                   builder: (context, displayMode) {
                     return const Divider(
                       endIndent: 8,
@@ -159,6 +168,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                     _onLogOut(ref, context);
                   },
                 ),
+
               ],
             ),
             Expanded(
@@ -175,6 +185,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                   //3
                   MedicinFormScreen(),
                   Expiration(),
+                  RequestReport(),
                   //4
 
 

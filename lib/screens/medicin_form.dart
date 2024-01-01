@@ -17,35 +17,38 @@ class MedicinFormScreen extends ConsumerStatefulWidget {
 }
 
 class _MedicinFormScreenState extends ConsumerState<MedicinFormScreen> {
-  void onAddProduct(WidgetRef ref)async{
-    final tokenReader= ref.read(tokenProvider);
-    final medicine= AddingMedicineModel(
+  void onAddProduct(WidgetRef ref) async {
+    final tokenReader = ref.read(tokenProvider);
+    final medicine = AddingMedicineModel(
       commercialName: tradeNameCtr.text.toString(),
-    scientificName: scientificNameCtr.text.toString(),
-
-    createdat: chosenDate,
-    categoryId: chosenCategory,
-
-    company: companyNameCtr.text.toString(),
-    cost: priceCtr.text.toString(),
+      scientificName: scientificNameCtr.text.toString(),
+      createdat: chosenDate,
+      categoryId: chosenCategory,
+      company: companyNameCtr.text.toString(),
+      cost: priceCtr.text.toString(),
       quantityAvailable: quantityCtr.text.toString(),
     );
-   var response= await AddProductService().insertProduct(medicine, tokenReader.toString());
-     showDialog(
+    var response = await AddProductService()
+        .insertProduct(medicine, tokenReader.toString());
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(response==200?'The product added sucsessfuly ': ' Some errors hepaned please tye again'),
-          content: Text(response==200?'you can see it in the medicine screen ': 'error occcurred'),
+          title: Text(response == 200
+              ? 'The product added sucsessfuly '
+              : ' Some errors hepaned please tye again'),
+          content: Text(response == 200
+              ? 'you can see it in the medicine screen '
+              : 'error occcurred'),
           actions: [
             TextButton(
               onPressed: () {
-               tradeNameCtr.clear();
-               scientificNameCtr.clear();
-               quantityCtr.clear();
-               priceCtr.clear();
-               companyNameCtr.clear();
-               Navigator.pop(context);
+                tradeNameCtr.clear();
+                scientificNameCtr.clear();
+                quantityCtr.clear();
+                priceCtr.clear();
+                companyNameCtr.clear();
+                Navigator.pop(context);
               },
               child: Text('OK'),
             ),
@@ -53,8 +56,8 @@ class _MedicinFormScreenState extends ConsumerState<MedicinFormScreen> {
         );
       },
     );
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -93,8 +96,13 @@ class _MedicinFormScreenState extends ConsumerState<MedicinFormScreen> {
                       // SizedBox(
                       //   height: 8,
                       // ),
-                      TextFormMidicn(labelText: "Enter the scientific name", controller: scientificNameCtr,),
-                      TextFormMidicn(labelText: "Enter the trade name", controller: tradeNameCtr),
+                      TextFormMidicn(
+                        labelText: "Enter the scientific name",
+                        controller: scientificNameCtr,
+                      ),
+                      TextFormMidicn(
+                          labelText: "Enter the trade name",
+                          controller: tradeNameCtr),
                       SizedBox(
                         height: 20,
                       ),
@@ -106,19 +114,32 @@ class _MedicinFormScreenState extends ConsumerState<MedicinFormScreen> {
                             SizedBox(
                               width: 20,
                             ),
-                            Expanded(child: PickDateWidget())
+                            Expanded(
+                                child: PickDateWidget(
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime(DateTime.now().year + 10,
+                                  DateTime.now().month, DateTime.now().day),
+                              isForAdd: true,
+                                  isLast:  false,
+                            ))
                           ],
                         ),
                       ),
-                      TextFormMidicn(labelText: "Enter the manufacturer name", controller: companyNameCtr),
+                      TextFormMidicn(
+                          labelText: "Enter the manufacturer name",
+                          controller: companyNameCtr),
                       SizedBox(
                         width: 20,
                       ),
-                      TextFormMidicn(labelText: "Enter the available quantity", controller: quantityCtr),
+                      TextFormMidicn(
+                          labelText: "Enter the available quantity",
+                          controller: quantityCtr),
                       SizedBox(
                         width: 20,
                       ),
-                      TextFormMidicn(labelText: "Enter the price", controller: priceCtr),
+                      TextFormMidicn(
+                          labelText: "Enter the price", controller: priceCtr),
                       SizedBox(
                         height: 20,
                       ),
@@ -126,13 +147,12 @@ class _MedicinFormScreenState extends ConsumerState<MedicinFormScreen> {
                         height: 40,
                         width: 150,
                         decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 105, 206, 240),
+                            color: const Color.fromARGB(255, 70, 201, 210),
                             borderRadius: BorderRadius.circular(13)),
                         child: MaterialButton(
-                          onPressed: () async{
-                             onAddProduct(ref);
-                             print("rabeet");
-
+                          onPressed: () async {
+                            onAddProduct(ref);
+                            print("rabeet");
                           },
                           child: Text(
                             "Add",
@@ -142,9 +162,10 @@ class _MedicinFormScreenState extends ConsumerState<MedicinFormScreen> {
                                 color: Colors.white),
                           ),
                         ),
-
                       ),
-                      SizedBox(height: 20,)
+                      SizedBox(
+                        height: 20,
+                      )
                     ],
                   ),
                 ),

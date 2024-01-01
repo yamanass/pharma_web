@@ -26,7 +26,7 @@ class _CategoryDropDownState extends State<CategoryDropDown> {
             color: Colors.black,
             width: 0.5,
           ),
-          color: const Color.fromARGB(255, 105, 206, 240),
+          color: const Color.fromARGB(255, 70, 201, 210),
           borderRadius: BorderRadius.circular(8)),
       child: DropdownButton(
           hint: Text(

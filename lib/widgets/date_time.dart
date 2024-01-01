@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pharma_web/controllers/add_medicine_controller.dart';
+import 'package:pharma_web/data/rerquest_report.dart';
 import 'package:uuid/uuid.dart';
 
 final formatter = DateFormat.yMd();
 const uuid = Uuid();
 
 class PickDateWidget extends StatefulWidget {
-  PickDateWidget({super.key});
+  PickDateWidget({super.key, required this.initialDate, required this.firstDate, required this.lastDate, required this.isForAdd,
+  required this.isLast});
+  final initialDate;
+  final firstDate;
+  final lastDate;
+  bool isForAdd;
+  bool isLast;
 
   @override
   State<PickDateWidget> createState() => _PickDateWidgetState();
@@ -15,12 +22,7 @@ class PickDateWidget extends StatefulWidget {
 
 class _PickDateWidgetState extends State<PickDateWidget> {
   // note tell the backend about the first and the last date
-  final initialDate = DateTime.now();
 
-  final firstDate = DateTime.now();
-
-  final lastDate = DateTime(
-      DateTime.now().year + 10, DateTime.now().month, DateTime.now().day);
   DateTime? _selectedDate = null;
 
   @override
@@ -34,7 +36,7 @@ class _PickDateWidgetState extends State<PickDateWidget> {
             width: 0.5,
           ),
           borderRadius: BorderRadius.circular(8),
-          color: const Color.fromARGB(255, 105, 206, 240)
+          color: const Color.fromARGB(255, 70, 201, 210)
           //color: Color(0xff9bc3ff),
           ),
       child: Row(
@@ -55,19 +57,30 @@ class _PickDateWidgetState extends State<PickDateWidget> {
               data: ThemeData(
                   colorScheme: ColorScheme.fromSeed(
                       seedColor: //Color.fromARGB(255, 43, 116, 225),
-                          Color.fromARGB(255, 105, 206, 240))),
+                      const Color.fromARGB(255, 70, 201, 210))),
               child: Builder(builder: (BuildContext context) {
                 return ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: const Color.fromARGB(255, 105, 206, 240)),
+                        primary: const Color.fromARGB(255, 70, 201, 210)),
                     onPressed: () async {
                       var pickedDate = await showDatePicker(
                           context: context,
-                          initialDate: initialDate,
-                          firstDate: firstDate,
-                          lastDate: lastDate);
+                          initialDate: widget.initialDate,
+                          firstDate: widget.firstDate,
+                          lastDate: widget.lastDate);
                       setState(() {
-                        chosenDate=pickedDate!;
+
+                          if(widget.isForAdd) {
+                            chosenDate=pickedDate!;
+                          }else{
+                            if(widget.isLast){
+                              lastChosenDate=pickedDate!;
+                              print("lastChosenDate: $lastChosenDate");
+                            }else{
+                              firstChosenDate=pickedDate!;
+                              print("firstChosenDate: $firstChosenDate");
+                            }
+                          }
                         _selectedDate = pickedDate;
                         print(_selectedDate);
                       });
