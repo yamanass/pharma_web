@@ -45,12 +45,12 @@ class _catigorypageState extends ConsumerState<catigorypage> {
     return Scaffold(
         body: Column(children: [
       const Image(
-        image: AssetImage('assets/images/0ba76cee7ec19e0a432d2fca798f9a44.jpg'),
+        image: AssetImage('assets/images/512f06b0b6bedab32d0ab0c572ad65bd.jpg'),
         width: double.infinity,
-        height: 300,
+        height: 270,
       ),
       SizedBox(
-        height: 5,
+        height: 10,
       ),
       Container(
         child: Text(

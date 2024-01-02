@@ -77,7 +77,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                 displayMode: SideMenuDisplayMode.auto,
                 hoverColor: Colors.blue[100],
                 selectedHoverColor: Colors.blue[100],
-                selectedColor: Colors.lightBlue,
+                selectedColor: Color.fromARGB(255, 70, 201, 210),
                 selectedTitleTextStyle: const TextStyle(color: Colors.white),
                 selectedIconColor: Colors.white,
                 // decoration: BoxDecoration(

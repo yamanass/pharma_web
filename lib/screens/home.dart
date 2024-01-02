@@ -66,7 +66,7 @@ class homepage extends ConsumerWidget {
                           child: Row(
                             children: [
                               Text(
-                                'Click sign in and enjoy selecting the most wonderful medicines ',
+                                'Click Login and enjoy selecting the most wonderful medicines ',
                                 style: TextStyle(
                                     fontSize: 21, fontWeight: FontWeight.w300),
                                 textAlign: TextAlign.center,
@@ -98,7 +98,7 @@ class homepage extends ConsumerWidget {
 
                   },
                   child: Text(
-                    "sign in",
+                    "Login",
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w400,
